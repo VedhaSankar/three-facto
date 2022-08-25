@@ -18,6 +18,7 @@ import yfinance as yf
 from datetime import datetime
 import requests
 import pandas as pd
+import csv
 
 PATH = "/home/vedha/softwares/chromedriver"
 
@@ -84,9 +85,17 @@ def get_indian_stock_low_value(stock):
 
 
 def get_ticker(company):
-
-    df = pd.read_csv('stocks.csv')
-    print(df)
+       #String that you want to search
+    with open("stocks.csv") as f_obj:
+        reader = csv.reader(f_obj, delimiter=',')
+        for line in reader:      #Iterates through the rows of your csv
+                #line here refers to a row in the csv
+            if company in str(line):      #If the string you want to search is in the row
+                print("String found in first row of csv")
+                print(type(line))
+                print (line[0])
+            else:
+                continue
 
 
 def classify_company(company):
@@ -127,7 +136,8 @@ def startpy():
 
     # get_low_value('AAPL')
     # getTicker('Apple')
-    get_ticker('da')
+     get_ticker('google')
+    
 
 
 
