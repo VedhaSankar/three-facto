@@ -17,6 +17,7 @@ import numpy
 import yfinance as yf
 from datetime import datetime
 import requests
+import pandas as pd
 
 PATH = "/home/vedha/softwares/chromedriver"
 
@@ -82,34 +83,11 @@ def get_indian_stock_low_value(stock):
     return low_val
 
 
-# def get_ticker(company):
+def get_ticker(company):
 
-#     driver.get("https://www.google.com/")
+    df = pd.read_csv('stocks.csv')
+    print(df)
 
-#     # gets first element from the given tag
-#     search = driver.find_element_by_name("q")
-#     search.send_keys("cats")
-#     search.send_keys(Keys.RETURN)
-    
-#     time.sleep(5)
-
-    # driver.quit()
-
-def getTicker (company_name):
-
-    url = "https://s.yimg.com/aq/autoc"
-
-    parameters = {'query': company_name, 'lang': 'en-US'}
-    
-    response = requests.get(url = url, params = parameters)
-
-    data = response.json()
-
-    company_code = data['ResultSet']['Result'][0]['symbol']
-
-    print(company_code)
-    
-    return company_code
 
 def classify_company(company):
 
@@ -148,7 +126,8 @@ def get_all_low_values(TICKER_LIST):
 def startpy():
 
     # get_low_value('AAPL')
-    getTicker('Apple')
+    # getTicker('Apple')
+    get_ticker('da')
 
 
 
