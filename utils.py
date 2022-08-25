@@ -1,17 +1,18 @@
-# import yfinance as yf
+import yfinance as yf
 
-# #define the ticker symbol
-# tickerSymbol = "BSE:PRESTIGE"
+#define the ticker symbol
+tickerSymbol = "AAPL"
 
-# #get data on this ticker
-# tickerData = yf.Ticker(tickerSymbol)
+#get data on this ticker
+tickerData = yf.Ticker(tickerSymbol)
 
-# #get the historical prices for this ticker
-# tickerDf = tickerData.history(period='1d', start='2022-08-23', end='2022-08-23')
+#get the historical prices for this ticker
+tickerDf = tickerData.history(period='1d', start='2022-08-23', end='2022-08-23')
 
-# #see your data
-# print(tickerDf)
-
+#see your data
+# print(tickerDf.tail())
+for row in tickerDf.iterrows():
+    print (row[2])
 
 # import pandas as pd
 # import requests

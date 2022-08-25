@@ -1,16 +1,10 @@
 from flask import Flask, render_template
-import datetime
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def start():
-
-    return render_template('index.html')
-
-@app.route('/generate-qr')
-def generate_qr():
 
     return render_template('index.html')
 
