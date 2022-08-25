@@ -1,4 +1,5 @@
 
+from unicodedata import category
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
 import os
@@ -21,6 +22,21 @@ def start():
 
     return render_template('index.html')
 
+@app.route('/home')
+def home():
+
+    return render_template('home.html')
+
+
+@app.route('/categories/' methods = ['GET', 'POST'])
+def categories(category):
+
+    print(category)
+
+
+    return render_template('items.html')
+
+    # return render_template('home.html')
 
 @app.route('/new-product', methods=['GET', 'POST'])
 def new_product():
