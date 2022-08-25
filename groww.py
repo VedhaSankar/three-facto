@@ -20,16 +20,21 @@ def startpy():
 
     # gets first element from the given tag
     # search = driver.find_element_by_name("q")
-    search = driver.find_element(By.CSS_SELECTOR, '#searchPage > div.web-align > div.sp23SearchBox.absolute-center.clrText130 > div.sp23EntitySelect.fs15 > div > div > div > div > div.pos-rel.valign-wrapper.se55SelectBox.clrText > input')
-    stock = search.send_keys(Keys.ARROW_DOWN)
-    search = search.find_element(By.ID, 'sp23Input')
+    stock = driver.find_element(By.CSS_SELECTOR, '#searchPage > div.web-align > div.sp23SearchBox.absolute-center.clrText130 > div.sp23EntitySelect.fs15 > div > div > div > div > div.pos-rel.valign-wrapper.se55SelectBox.clrText > input')
+    stock = stock.send_keys(Keys.ARROW_DOWN)
+    search = driver.find_element(By.XPATH, '//*[@id="sp23Input"]')
+    print(search)
+    search.click()
+    # sm = stock.find_element(By.XPATH, '//*[@id="searchPage"]/div[2]/div[1]/div[1]/div').click()
+    search.send_keys("INFY", Keys.ENTER)
+
     # search = driver.find_element(By.CSS_SELECTOR, "#globalSearch23-suggestionsContainer > div.se28GetDivAboveSuggestion > div > div:nth-child(2)")
     
 
-    search.send_keys(Keys.RETURN)
-    time.sleep(10)
+    # search.send_keys(Keys.RETURN)
+    time.sleep(5)
 
-    # driver.quit()
+    driver.quit()
 
 
 if __name__ == '__main__':
