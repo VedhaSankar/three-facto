@@ -28,13 +28,18 @@ def startpy():
     # sm = stock.find_element(By.XPATH, '//*[@id="searchPage"]/div[2]/div[1]/div[1]/div').click()
     search.send_keys("INFY", Keys.ENTER)
 
+    time.sleep(5)
+
+
+    reqd_stock = search.find_element(By.XPATH, '//*[@id="searchPage"]/div[2]/div[2]/div[2]/div/div[1]').click()
+
     # search = driver.find_element(By.CSS_SELECTOR, "#globalSearch23-suggestionsContainer > div.se28GetDivAboveSuggestion > div > div:nth-child(2)")
     
 
     # search.send_keys(Keys.RETURN)
     time.sleep(5)
 
-    driver.quit()
+    # driver.quit()
 
 
 if __name__ == '__main__':
