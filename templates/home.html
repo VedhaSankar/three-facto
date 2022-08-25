@@ -369,7 +369,7 @@
         let msg = new SpeechSynthesisUtterance();
         let voices = speechSynthesis.getVoices();
         msg.voice = voices[0];
-        let tags = document.querySelectorAll('p,a,h1,h2,h3'); // add more tags for you project
+        let tags = document.querySelectorAll('p,a,h1,b,br,span,h2,h3'); // add more tags for you project
         tags.forEach((tag) => {
             tag.addEventListener('mouseover', (e) => {
 
