@@ -34,39 +34,6 @@ def home():
 
     return render_template('home2.html')
 
-# @app.route('/signup', methods = ['GET', 'POST'])
-# def signup():
-
-#     if request.method == 'POST':
-
-#         aitceid         = request.values.get('aitceid')
-#         uname           = request.values.get('uname')
-#         college_name    = request.values.get('college_name')
-#         email_id        = request.values.get('email_id')
-#         password        = request.values.get('password')
-
-#         collection_name = 'user_details'
-
-#         current_user_id = get_prev_id(collection_name) + 1
-
-#         user_dict = {
-#             '_id'           : current_user_id,
-#             "aitceid"       : aitceid,
-#             "uname"         : uname,
-#             "college_name"  : college_name,
-#             "email_id"      : email_id,
-#             "password"      : password
-#         }
-
-
-#         new_collection = database[collection_name]
-#         x = new_collection.insert_one(user_dict)
-#         print(x)
-
-#     return render_template('sign_up.html')
-
-
-
 @app.route('/categories/<category>', methods = ['GET', 'POST'])
 def categories(category):
 
