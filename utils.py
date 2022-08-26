@@ -19,10 +19,22 @@ from datetime import datetime
 import requests
 import pandas as pd
 import csv
+import pymongo
+from pymongo import MongoClient
+from datetime import datetime
+import os
+
+
+
+MONGO_URI = os.environ.get('MONGO_URI')
+client = MongoClient(MONGO_URI)
+DB_NAME = 'trails'
+database = client[DB_NAME]
 
 PATH = "/home/vedha/softwares/chromedriver"
 
 TICKER_LIST = ['TSLA','AMZN','AAPL','w','AMD']
+
 
 chrome_options = Options()
 ua = UserAgent()
@@ -131,12 +143,19 @@ def get_all_low_values(TICKER_LIST):
 
     return low_values_list
 
+def get_prev_id(db):
 
+    collection = database[db]
+    last_id = collection.find().sort([("_id", pymongo.DESCENDING)]).limit(1)
+
+    for i in last_id:
+        return i['_id']
 def startpy():
 
     # get_low_value('AAPL')
     # getTicker('Apple')
-     get_ticker('google')
+     #get_ticker('google')
+     get_prev_id()
     
 
 

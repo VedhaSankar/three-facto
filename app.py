@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import os
 from pymongo import MongoClient
 from datetime import datetime
+from utils import get_prev_id
 
 load_dotenv()
 
@@ -28,36 +29,47 @@ def home():
 
     return render_template('home2.html')
 
-# @app.route('/signup', methods = ['GET', 'POST'])
-# def signup():
+@app.route('/signup', methods = ['GET','POST'])
+def signup():
 
-#     if request.method == 'POST':
+    if request.method == 'POST':
 
-#         aitceid         = request.values.get('aitceid')
-#         uname           = request.values.get('uname')
-#         college_name    = request.values.get('college_name')
-#         email_id        = request.values.get('email_id')
-#         password        = request.values.get('password')
+        cs_id        = request.values.get('cs_id')
+        uname           = request.values.get('uname')
+        location    = request.values.get('location')
+        email_id        = request.values.get('email_id')
+        password        = request.values.get('password')
+        # user             =request.values.get('submit')
 
-#         collection_name = 'user_details'
+        user_type = request.form.get('user_type')
 
-#         current_user_id = get_prev_id(collection_name) + 1
+        # print(user_type)
 
-#         user_dict = {
-#             '_id'           : current_user_id,
-#             "aitceid"       : aitceid,
-#             "uname"         : uname,
-#             "college_name"  : college_name,
-#             "email_id"      : email_id,
-#             "password"      : password
-#         }
+        collection_name = 'trials'
+
+        current_user_id = get_prev_id(collection_name) + 1
+        # current_user_id = 1
 
 
-#         new_collection = database[collection_name]
-#         x = new_collection.insert_one(user_dict)
-#         print(x)
+        user_dict = {
+            '_id'           : current_user_id,
+            "cs_id"       : cs_id,
+            "uname"         : uname,
+            "location"  : location,
+            "email_id"      : email_id,
+            "password"      : password,
+            "user_type"           :user_type    
+        }
 
-#     return render_template('sign_up.html')
+
+        new_collection = database[collection_name]
+        x = new_collection.insert_one(user_dict)
+        print(x)
+        return render_template('sign_up.html')
+    return render_template('sign_up.html')
+    
+
+
 
 
 
