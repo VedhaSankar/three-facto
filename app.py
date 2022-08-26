@@ -10,6 +10,7 @@ from business import get_prev_id
 load_dotenv()
 
 
+
 MONGO_URI = os.environ.get('MONGO_URI')
 client = MongoClient(MONGO_URI)  
 
@@ -41,12 +42,17 @@ def signup():
         password    = request.values.get('password')
         user_type   = request.form.get('user_type')
 
+
         # print(user_type)
 
         collection_name = 'trials'
 
         current_user_id = get_prev_id(collection_name) + 1
         # current_user_id = 1
+        if user_type == "user":
+            u_id='u_'+str(current_user_id)
+        else:
+            u_id='m_'+str(current_user_id)
 
 
         user_dict = {
@@ -56,15 +62,16 @@ def signup():
             "location"      : location,
             "email_id"      : email_id,
             "password"      : password,
-            "user_type"     : user_type    
+            "user_type"     : user_type,
+            "user_id"        :u_id
         }
 
 
         new_collection = database[collection_name]
         x = new_collection.insert_one(user_dict)
-        
+
         print(x)
-        
+
         return render_template('sign_up.html')
 
     return render_template('sign_up.html')
