@@ -28,7 +28,7 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/categories/' methods = ['GET', 'POST'])
+@app.route('/categories/', methods = ['GET', 'POST'])
 def categories(category):
 
     print(category)
