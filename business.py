@@ -32,7 +32,25 @@ def display_all_products():
     collection = database['products']
     products = collection.find()
 
+    image_url_list = get_image_url_list()
+
+    print(image_url_list)
+
     for product in products:
+
+        product_str = [product['Company_name'], product['Product_name']]
+        
+        print(product_str)
+        
+        for item in image_url_list:
+            
+            print (item)
+            
+            if product_str[0] and product_str[1] in item:
+                
+                product['image_url'] = item
+                break
+                
         list_of_products.append(product)
 
     print (list_of_products)
@@ -52,7 +70,7 @@ def get_image_url_list():
 
         final = 'https://storage.googleapis.com/trifacto/' + x
 
-        print(final)
+        # print(final)
 
         image_url_list.append(final)
 
@@ -60,11 +78,14 @@ def get_image_url_list():
 
 
 
+
+
+
 def main():
 
     # print(get_prev_id('trials'))
-    # display_all_products()
-    get_image_url_list()
+    display_all_products()
+    # get_image_url_list()
 
 
 if __name__ == '__main__':  
