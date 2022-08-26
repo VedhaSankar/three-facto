@@ -1,12 +1,22 @@
 
 from unicodedata import category
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, redirect, session
 from dotenv import load_dotenv
 import os
 from pymongo import MongoClient
 from datetime import datetime
+import gcp_upload
+from werkzeug.utils import secure_filename
+
+
 
 load_dotenv()
+
+app = Flask(__name__)
+
+ALLOWED_EXTENSIONS  = {'zip'}
+app.config["UPLOAD_FOLDER"] = "uploads/"
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 
 MONGO_URI = os.environ.get('MONGO_URI')
@@ -15,13 +25,12 @@ client = MongoClient(MONGO_URI)
 DB_NAME = 'trials'
 database = client[DB_NAME]
 
-app = Flask(__name__)
 
 
-# @app.route('/')
-# def start():
-
-#     return render_template('index.html')
+def allowed_file(filename):
+    
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def home():
@@ -88,7 +97,6 @@ def new_product():
         dt_string   = now.strftime("%d/%m/%Y %H:%M:%S")
 
 
-
         result = {
             'Company name'          : c_name,
             'Product name'          : p_name,
@@ -107,9 +115,36 @@ def new_product():
 
         print(x)
 
-        return render_template('new_product.html', result="Inserted")
+        if 'file' not in request.files:
+            print('1')
 
-    return render_template('new_product.html')
+            flash('No file part')
+            return redirect(request.url)
+
+        file = request.files['file']
+
+        if file.filename == '':
+            print('2')
+
+
+            flash('No selected file')
+            return redirect(request.url)
+
+        if file and allowed_file(file.filename):
+
+            print('3')
+
+
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # gcp_upload.upload_blob(f'uploads/{filename}', f'project_{current_project_id}/{filename}')
+            return render_template('new_product2.html', result="Inserted") 
+
+        else:
+            flash('Allowed file type is .zip')
+            return redirect(request.url)
+
+    return render_template('new_product2.html')
 
 
 if __name__== "__main__":
