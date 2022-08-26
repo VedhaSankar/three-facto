@@ -146,20 +146,27 @@
 </head>
 
 <body>
-    <form action="/signup" method="post" class="login">
+    <form action="/signup" method="post" class="signup">
         <h1 style="padding-left: 120px; color:#151D3B ;"><i class="fa-solid fa-user"></i> Sign Up</h1>
-
-        <label for="aitceid"><b>Copperative Society ID/Pin ID</b></label>
-        <input type="aitceid" id="aitceid" name="aitceid" placeholder="AICTE ID">
+            <label for="cars">Choose user type:</label>
+            <select name="user_type" id="user_type">
+              <option value="manufacturer">manufacturer</option>
+              <option value="user">user</option>
+            </select>
+            <br><br>
+        <label for="cs_id"><b>Copperative Society ID/Pin ID</b></label>
+        <input type="cs_id" id="cs_id" name="cs_id" placeholder="Copperative Society ID">
 
         <label for="uname"><b>Username</b></label>
         <input type="uname" id="uname" name="uname" placeholder="Username">
 
-        <label for="college_name"><b>Location</b></label>
-        <input type="location" id="location" name="college_name" placeholder="College Name" required>
+        <label for="location"><b>Location</b></label>
+        <input type="location" id="location" name="location" placeholder="College Name" required>
 
         <label for="email_id"><b>Email ID</b></label>
         <input type="email_id" id="email_id" name="email_id" placeholder="Email ID" required>
+
+
 
         <label for="password"><b>Password</b></label>
         <input type="password" id="password" name="password" placeholder="Password" required>

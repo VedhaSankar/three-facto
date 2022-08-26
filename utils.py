@@ -19,10 +19,14 @@ from datetime import datetime
 import requests
 import pandas as pd
 import csv
+from datetime import datetime
+import os
+
 
 PATH = "/home/vedha/softwares/chromedriver"
 
 TICKER_LIST = ['TSLA','AMZN','AAPL','w','AMD']
+
 
 chrome_options = Options()
 ua = UserAgent()
@@ -132,14 +136,13 @@ def get_all_low_values(TICKER_LIST):
     return low_values_list
 
 
+
 def startpy():
 
     # get_low_value('AAPL')
     # getTicker('Apple')
-     get_ticker('google')
+    get_ticker('google')
     
-
-
 
 
 if __name__ == '__main__':
