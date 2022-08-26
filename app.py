@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os
 from pymongo import MongoClient
 from datetime import datetime
-from business import get_prev_id
+from business import get_prev_id, display_all_products
 from gcp_upload import upload_blob
 from werkzeug.utils import secure_filename
 import security_utils
@@ -65,8 +65,8 @@ def signup():
 
         collection_name = 'users'
 
-        # current_user_id = get_prev_id(collection_name) + 1
-        current_user_id = 1
+        current_user_id = get_prev_id(collection_name) + 1
+        # current_user_id = 1
 
         if user_type == "user":
             u_id='u_'+str(current_user_id)
@@ -113,7 +113,7 @@ def login():
 
         # print (email, password)
 
-        email_found = records.find_one({"email_id":email})
+        email_found = records.find_one({"email_id" : email})
 
         # print (email_found)
 
@@ -171,12 +171,12 @@ def new_product():
 
 
         result = {
-            'Company name'          : c_name,
-            'Product name'          : p_name,
+            'Company_name'          : c_name,
+            'Product_name'          : p_name,
             'Price'                 : price,
             'Inventory'             : inventory,
             'Categories'            : categories,
-            'Manufacturing site'    : man_site,
+            'Manufacturing_site'    : man_site,
             'Description'           : description,
             'Time'                  : dt_string
         }
@@ -213,18 +213,16 @@ def new_product():
 
     return render_template('new_product2.html')
 
-# @app.route('/view-all', methods = ['GET', 'POST'])
-# def view_all_products():
+@app.route('/view-all', methods = ['GET', 'POST'])
+def view_all_products():
 
-#     list_of_products = display_all_products()
+    list_of_products = display_all_products()
 
-#     result = {
-#         "result" : list_of_products
-#     }
+    result = {
+        "result" : list_of_products
+    }
 
-#     return render_template('view_all.html', products = result)
-
-
+    return render_template('view_all.html', products = result)
 
 
 if __name__== "__main__":
