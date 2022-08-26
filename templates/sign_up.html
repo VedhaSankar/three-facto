@@ -146,14 +146,17 @@
 </head>
 
 <body>
-    <form action="/signup" method="post" class="signup">
+    <form action="/signup" method="post" class="login">
         <h1 style="padding-left: 120px; color:#151D3B ;"><i class="fa-solid fa-user"></i> Sign Up</h1>
-            <label for="cars">Choose user type:</label>
+
+            <label for="cars" style="color:#151D3B"><b>Choose user type:</b></label>
             <select name="user_type" id="user_type">
-              <option value="manufacturer">manufacturer</option>
-              <option value="user">user</option>
-            </select>
+              <option value="manufacturer">Manufacturer</option>
+              <option value="user">User</option>
+            </select> 
             <br><br>
+
+
         <label for="cs_id"><b>Copperative Society ID/Pin ID</b></label>
         <input type="cs_id" id="cs_id" name="cs_id" placeholder="Copperative Society ID">
 
@@ -165,8 +168,6 @@
 
         <label for="email_id"><b>Email ID</b></label>
         <input type="email_id" id="email_id" name="email_id" placeholder="Email ID" required>
-
-
 
         <label for="password"><b>Password</b></label>
         <input type="password" id="password" name="password" placeholder="Password" required>
