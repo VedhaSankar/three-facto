@@ -1,1 +1,4 @@
 .env
+trifacto.json 
+__pycache__/
+.vscode

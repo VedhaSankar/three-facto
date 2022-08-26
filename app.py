@@ -1,29 +1,35 @@
 
 from unicodedata import category
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, redirect, session
 from dotenv import load_dotenv
 import os
 from pymongo import MongoClient
 from datetime import datetime
 from business import get_prev_id
+from gcp_upload import upload_blob
+from werkzeug.utils import secure_filename
 
 load_dotenv()
-
-
-
-MONGO_URI = os.environ.get('MONGO_URI')
-client = MongoClient(MONGO_URI)  
-
-DB_NAME = 'trials'
-database = client[DB_NAME]
 
 app = Flask(__name__)
 
 
-# @app.route('/')
-# def start():
+MONGO_URI = os.environ.get('MONGO_URI')
+client = MongoClient(MONGO_URI)  
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-#     return render_template('index.html')
+ALLOWED_EXTENSIONS  = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+app.config["UPLOAD_FOLDER"] = "uploads/"
+app.SECRET_KEY = SECRET_KEY
+
+
+DB_NAME = 'trials'
+database = client[DB_NAME]
+
+def allowed_file(filename):
+    
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def home():
@@ -76,8 +82,6 @@ def signup():
 
     return render_template('sign_up.html')
     
-
-
 @app.route('/categories/<category>', methods = ['GET', 'POST'])
 def categories(category):
 
@@ -105,7 +109,6 @@ def new_product():
         dt_string   = now.strftime("%d/%m/%Y %H:%M:%S")
 
 
-
         result = {
             'Company name'          : c_name,
             'Product name'          : p_name,
@@ -124,9 +127,30 @@ def new_product():
 
         print(x)
 
-        return render_template('new_product.html', result="Inserted")
+        if 'file' not in request.files:
 
-    return render_template('new_product.html')
+            flash('No file part')
+            return redirect(request.url)
+
+        file = request.files['file']
+
+        if file.filename == '':
+
+            flash('No selected file')
+            return redirect(request.url)
+
+        if file and allowed_file(file.filename):
+
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            upload_blob(f'uploads/{filename}', f'product_{c_name}_{p_name}/{filename}')
+            return render_template('new_product2.html', result="Inserted") 
+
+        else:
+            flash('Allowed file type is .zip')
+            return redirect(request.url)
+
+    return render_template('new_product2.html')
 
 
 if __name__== "__main__":

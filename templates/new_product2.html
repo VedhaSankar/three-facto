@@ -7,7 +7,7 @@
     <title>New Product</title>
 </head>
 <body>
-    <form action='/new-product' method="post">
+    <form action='/new-product' method="post" enctype="multipart/form-data">
         <label for="c_name">Company Name:</label><br><br>
         <input type="text" id="c_name" name="c_name"><br><br>
         <label for="p_name">Product name:</label><br><br>
@@ -21,6 +21,8 @@
         <label for="description">description:</label><br><br>
         <input type="text" id="description" name="description"><br>
         <br>
+            <input type="file" id="file" name="file"><br>
+
         <input type="submit" value="Submit">
       </form>    
 </body>
