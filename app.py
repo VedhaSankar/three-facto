@@ -61,7 +61,7 @@ def home():
 
 
 
-@app.route('/categories/', methods = ['GET', 'POST'])
+@app.route('/categories/<category>', methods = ['GET', 'POST'])
 def categories(category):
 
     print(category)
@@ -69,7 +69,6 @@ def categories(category):
 
     return render_template('items.html')
 
-    # return render_template('home.html')
 
 @app.route('/new-product', methods=['GET', 'POST'])
 def new_product():
@@ -85,7 +84,7 @@ def new_product():
         categories  = request.values.get("categories")
         man_site    = request.values.get("man_site")
         description = request.values.get("description")
-        
+
         dt_string   = now.strftime("%d/%m/%Y %H:%M:%S")
 
 

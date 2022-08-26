@@ -2,3 +2,6 @@ flask
 selenium
 webdriver-manager
 requests
+pymongo
+python-dotenv
+dnspython
