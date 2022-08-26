@@ -5,27 +5,24 @@ from dotenv import load_dotenv
 import os
 from pymongo import MongoClient
 from datetime import datetime
-import gcp_upload
+from gcp_upload import upload_blob
 from werkzeug.utils import secure_filename
-
-
 
 load_dotenv()
 
 app = Flask(__name__)
 
-ALLOWED_EXTENSIONS  = {'zip'}
-app.config["UPLOAD_FOLDER"] = "uploads/"
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-
-
 MONGO_URI = os.environ.get('MONGO_URI')
 client = MongoClient(MONGO_URI)  
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
+ALLOWED_EXTENSIONS  = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+app.config["UPLOAD_FOLDER"] = "uploads/"
+app.SECRET_KEY = SECRET_KEY
+
 
 DB_NAME = 'trials'
 database = client[DB_NAME]
-
-
 
 def allowed_file(filename):
     
@@ -116,7 +113,6 @@ def new_product():
         print(x)
 
         if 'file' not in request.files:
-            print('1')
 
             flash('No file part')
             return redirect(request.url)
@@ -124,20 +120,15 @@ def new_product():
         file = request.files['file']
 
         if file.filename == '':
-            print('2')
-
 
             flash('No selected file')
             return redirect(request.url)
 
         if file and allowed_file(file.filename):
 
-            print('3')
-
-
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            # gcp_upload.upload_blob(f'uploads/{filename}', f'project_{current_project_id}/{filename}')
+            upload_blob(f'uploads/{filename}', f'product_{c_name}_{p_name}/{filename}')
             return render_template('new_product2.html', result="Inserted") 
 
         else:
