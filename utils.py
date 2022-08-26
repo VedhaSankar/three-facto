@@ -1,26 +1,40 @@
 # https://groww.in/
 
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver import ActionChains
-import time 
-from bs4 import BeautifulSoup
-from selenium.webdriver.chrome.options import Options
-from fake_useragent import UserAgent
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+# from selenium import webdriver
+# from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.chrome.service import Service
+# #from webdriver_manager.chrome import ChromeDriverManager
+# from selenium.webdriver import ActionChains
+# import time 
+# from bs4 import BeautifulSoup
+# from selenium.webdriver.chrome.options import Options
+# from fake_useragent import UserAgent
+# from selenium import webdriver
+# from selenium.webdriver.common.keys import Keys
 import time 
 import numpy
 import yfinance as yf
-from datetime import datetime
 import requests
 import pandas as pd
 import csv
 from datetime import datetime
 import os
+import pymongo
+from pymongo import MongoClient
+from dotenv import load_dotenv
+
+
+load_dotenv()
+MONGO_URI = os.environ.get('MONGO_URI')
+client = MongoClient(MONGO_URI)
+SECRET_KEY = os.environ.get('SECRET_KEY')
+db = client["trials"]
+col = db["products"]
+
+
+
+
 
 
 PATH = "/home/vedha/softwares/chromedriver"
@@ -28,18 +42,18 @@ PATH = "/home/vedha/softwares/chromedriver"
 TICKER_LIST = ['TSLA','AMZN','AAPL','w','AMD']
 
 
-chrome_options = Options()
-ua = UserAgent()
-userAgent = ua.random
+# chrome_options = Options()
+# ua = UserAgent()
+# userAgent = ua.random
 
-print(userAgent)
+# print(userAgent)
 
-chrome_options.add_argument(f'user-agent={userAgent}')
-chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-chrome_options.add_argument("--headless")
+# chrome_options.add_argument(f'user-agent={userAgent}')
+# chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
+# chrome_options.add_argument("--headless")
 
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-action = ActionChains(driver)
+# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+# action = ActionChains(driver)
 
 def get_stock_url(ticker):
 
@@ -95,9 +109,10 @@ def get_ticker(company):
         for line in reader:      #Iterates through the rows of your csv
                 #line here refers to a row in the csv
             if company in str(line):      #If the string you want to search is in the row
-                print("String found in first row of csv")
-                print(type(line))
-                print (line[0])
+                # print("String found in first row of csv")
+                # print(type(line))
+                # print (line[0])
+                return line[0]
             else:
                 continue
 
@@ -134,15 +149,41 @@ def get_all_low_values(TICKER_LIST):
     # print(low_values_list)
 
     return low_values_list
+def cmp_name():
+    l=[]
+    # j=0
+
+    for i in col.find():
+        l.append(i["Company name"])
+    return l
+
+        # print(type(i))
+
+    # Database Name
+def get_each_ticker():
+    l=[]
+    m=[]
+    a=cmp_name()
+    for item in a:
+        l.append(get_ticker(item))
+    # print(l)
+    m= get_all_low_values(l)
+    result_dict = dict(zip(a, m))
+    print(result_dict)
+    # print(m)
 
 
 
 def startpy():
+    get_each_ticker()
+    # get_low_value('CAJ')
 
     # get_low_value('AAPL')
     # getTicker('Apple')
-    get_ticker('google')
-    
+    # a= cmp_name()
+    # get_ticker('google')
+
+
 
 
 if __name__ == '__main__':
