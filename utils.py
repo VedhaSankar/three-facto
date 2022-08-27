@@ -134,6 +134,7 @@ def get_low_value(tickerSymbol):
     # get the historical prices for this ticker
 
     try:
+        print ("here")
         tickerDf = tickerData.history(period='1d', start=cur_date, end=cur_date)
     except:
         return 0
@@ -158,11 +159,14 @@ def get_all_low_values(TICKER_LIST):
 
 
 def cmp_name():
+    
     l = []
     # j=0
 
     for i in col.find():
+
         l.append(i["Company name"])
+
     return l
 
     # print(type(i))
@@ -173,14 +177,26 @@ def cmp_name():
 def get_each_ticker():
     l = []
     m = []
+    
     a = cmp_name()
-    for item in a:
-        l.append(get_ticker(item))
-    m = get_all_low_values(l)
+
+    try:
+
+        for item in a:
+            l.append(get_ticker(item))
+        m = get_all_low_values(l)
+
+    except:
+
+        m = 0
+
     result_dict = dict(zip(a, m))
+
     return result_dict
 
 def sort_company_data_by_ticker_data(company_data, ticker_data):
+
+    # if ticker_data["none"] != 0:
 
     sorted_company_list = list({k: v for k, v in sorted(ticker_data.items(), key=lambda item: item[1])}.keys())
 
@@ -194,12 +210,28 @@ def sort_company_data_by_ticker_data(company_data, ticker_data):
 
     return res
 
+    # else:
+
+    #     print ("what")
+
+
 def startpy():
 
 
     ticker_data = get_each_ticker()
-    ans = sort_company_data_by_ticker_data(result, ticker_data)
-    print(ans)
+
+    print (ticker_data)
+
+    if ticker_data["none"] != 0:
+
+        ans = sort_company_data_by_ticker_data(result, ticker_data)
+        print(ans)
+
+    else:
+
+        print ("what")
+
+
 
 
     # get_low_value('CAJ')
