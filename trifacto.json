@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "modern-diode-339415",
+  "private_key_id": "44d36594c2764584d2320913bf94a27c16d165e9",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDkI6pjrsCj6soH\n44FziFVv4/f2yRaJUPMeCvhMr37CP7+qMHRvjQxhL4Zt6UkjYxltvR1ztWZj/Dzm\n7zoRld4Bejz2C1ShjgltRo+w6APcOD1MN6IR8HFB3p9FRvlDy8UzXspdpMv+HdBL\nLxF7JOf7EYpDsWC8+AfPxC18j06dlYTlnMgQyg3vzTPXm9no3r4NMhzQJQfG+Ait\ntcn6jck/QVta3F0lTkEl3qLPm+psBoIcE/bu4ol/1PwxEWRFc0NYbw+v67yNWusY\n5Yryjc2Dgu8b19OLvhd5daxOLoAXpH3ee7dnL1QKiXvBQ1gGmgs+rm956PsFWxAA\nPGXWjjdPAgMBAAECggEACrGhSwrl/MkEr1n6t2+skZIeDXNfmxAwVTgua2nOh0x1\nr4SV8KSr7+JKatyEkSQUDRDQUJwwMH+iWzDbh/d+cJNKSD4/uVLvHjAwjBpUE/6O\n4QO6lRywMmY9EQJCrOrgU4gd9EXFSiQbn2qVZzBTr3EjCglGf5UgyJxphW0yQjCp\nWwhQaRuJ0mLjwPu1KeW4W+HRj6jIXaUILNJolC5CI92IdYspwnWLni+W8CH64Xv7\nKK0JtxWSA5F3NutZHQYlbbDbcML1qVOVPDh6PiIfBxfHNZjuKxBgrORpp5Dpiqt+\nzDq04QVmpaimFB20fsNnE0vMBufRgIB3km6CHhYAAQKBgQD92/QMF9QVK2cDWuIN\nr7b815R5f46rvXSI8/ohERGInsIwpOuP3wVsZxIXgnubUT4JAUf09lXfutDSwCwi\nE6sZdxdM7WeoHJv17ea8DPARs66QlbeUO5IJiFMCXSWTMEWrOjAs5zA2BCKo7WYz\nOfYO2IUXVvnyV8SiDDu5p1FSrwKBgQDmEC/H2qG6RgGtf2/zwZTmaMSEhmRbgGWu\nPNngXOpkczDOdE4xeQJTGd1zUwy5e4trYh0kS0aSV2SYvgPsKdf1j3xVSqY2FU8T\n2dpFA0CjC0MtaMfu+vW+K2DI8XzVRZ4Iqity2yPPxSCDGOHCbVDVLJa76UeqpsHB\ntimgd+UNYQKBgQDIC1gZX32k4PrgTfHszxbn0AoUZExNUZJPidMF06l5e4GTS6LF\nUP25Gs/K7uvwzOiRuAy4IJYzI8gDC6S7hbxC6PHXkQ0qEMFl3v8AGUHk8S8SiKiN\nixPdpyuipTxC7Ls53zSvbc80AbY+YDU1EOuxbzYR2lxEeJ1fBTzbY9pVyQKBgGxA\nT4s1R4XzbNSrMw06GAr2XwmQhuY7Gx0KCua0MaIERYHPXf+PVdWuRPH/sOwRwr9L\nUjUCqnkvX+ky93uHENO9qR4k2uJ10lif2EFCz4YoRXq3Y+QB9+F8XbUPU9KySDMB\nhyIrFMWtlqe47HlkoHU93ssacBtPDbpNMXcNExzhAoGBAIT90MjKdeBHsZoIMI52\nFdQrO2FojdhLzpBzjttsmQ3aTp5p8I7iwMaAM5otFi428Plqk9f+Qqq90btTTey0\nwY08QORnWVPVevQXiTrNLPDX4Z6p4JoxTQhwuNNvzkyZkxiWjB0o6ZcRsbeyJ1om\nTHeNz/nIxEvfb5wTtQiQV8B9\n-----END PRIVATE KEY-----\n",
+  "client_email": "trifacto@modern-diode-339415.iam.gserviceaccount.com",
+  "client_id": "106799258924954693794",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/trifacto%40modern-diode-339415.iam.gserviceaccount.com"
+}
+
