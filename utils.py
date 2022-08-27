@@ -6,13 +6,14 @@
 # from selenium.webdriver.chrome.service import Service
 # #from webdriver_manager.chrome import ChromeDriverManager
 # from selenium.webdriver import ActionChains
-# import time 
+# import time
 # from bs4 import BeautifulSoup
 # from selenium.webdriver.chrome.options import Options
 # from fake_useragent import UserAgent
 # from selenium import webdriver
 # from selenium.webdriver.common.keys import Keys
-import time 
+import time
+from tracemalloc import start
 import numpy
 import yfinance as yf
 import requests
@@ -33,13 +34,9 @@ db = client["trials"]
 col = db["products"]
 
 
-
-
-
-
 PATH = "/home/vedha/softwares/chromedriver"
 
-TICKER_LIST = ['TSLA','AMZN','AAPL','w','AMD']
+TICKER_LIST = ['TSLA', 'AMZN', 'AAPL', 'w', 'AMD']
 
 
 # chrome_options = Options()
@@ -63,8 +60,8 @@ def get_stock_url(ticker):
     # search = driver.find_element_by_name("q")
     time.sleep(3)
 
-
-    stock_selection = driver.find_element(By.CSS_SELECTOR, '#searchPage > div.web-align > div.sp23SearchBox.absolute-center.clrText130 > div.sp23EntitySelect.fs15 > div > div > div > div > div.pos-rel.valign-wrapper.se55SelectBox.clrText > input')
+    stock_selection = driver.find_element(
+        By.CSS_SELECTOR, '#searchPage > div.web-align > div.sp23SearchBox.absolute-center.clrText130 > div.sp23EntitySelect.fs15 > div > div > div > div > div.pos-rel.valign-wrapper.se55SelectBox.clrText > input')
     stock_selection = stock_selection.send_keys(Keys.ARROW_DOWN)
 
     search = driver.find_element(By.XPATH, '//*[@id="sp23Input"]')
@@ -73,7 +70,8 @@ def get_stock_url(ticker):
 
     time.sleep(3)
 
-    reqd_stock = search.find_element(By.XPATH, '//*[@id="searchPage"]/div[2]/div[2]/div[2]/div/div[1]').click()
+    reqd_stock = search.find_element(
+        By.XPATH, '//*[@id="searchPage"]/div[2]/div[2]/div[2]/div/div[1]').click()
 
     cur_url = driver.current_url
 
@@ -82,6 +80,7 @@ def get_stock_url(ticker):
 
     return cur_url
 
+
 def get_indian_stock_low_value(stock):
 
     cur_url = get_stock_url(stock)
@@ -89,9 +88,10 @@ def get_indian_stock_low_value(stock):
     # print(driver.get(cur_url))
 
     all_data = {}
-    
-    values = driver.find_elements('xpath','//*[@class="pbar29Value fs16"]/div/span')
-    titles = driver.find_elements('xpath','//*[@class="pbar29KeyText fs14"]')
+
+    values = driver.find_elements(
+        'xpath', '//*[@class="pbar29Value fs16"]/div/span')
+    titles = driver.find_elements('xpath', '//*[@class="pbar29KeyText fs14"]')
     for i in range(len(values)):
         all_data[titles[i].text] = values[i].text
 
@@ -103,12 +103,12 @@ def get_indian_stock_low_value(stock):
 
 
 def get_ticker(company):
-       #String that you want to search
+    # String that you want to search
     with open("stocks.csv") as f_obj:
         reader = csv.reader(f_obj, delimiter=',')
-        for line in reader:      #Iterates through the rows of your csv
-                #line here refers to a row in the csv
-            if company in str(line):      #If the string you want to search is in the row
+        for line in reader:  # Iterates through the rows of your csv
+            # line here refers to a row in the csv
+            if company in str(line):  # If the string you want to search is in the row
                 # print("String found in first row of csv")
                 # print(type(line))
                 # print (line[0])
@@ -121,6 +121,7 @@ def classify_company(company):
 
     pass
 
+
 def get_low_value(tickerSymbol):
 
     cur_date = datetime.today().strftime('%Y-%m-%d')
@@ -131,13 +132,18 @@ def get_low_value(tickerSymbol):
     tickerData = yf.Ticker(tickerSymbol)
 
     # get the historical prices for this ticker
-    tickerDf = tickerData.history(period = '1d', start = cur_date, end = cur_date)
-        
+
+    try:
+        tickerDf = tickerData.history(period='1d', start=cur_date, end=cur_date)
+    except:
+        return 0
+
     l = tickerDf['Low'].values[0]
 
     # print(l)
 
     return l
+
 
 def get_all_low_values(TICKER_LIST):
 
@@ -145,48 +151,75 @@ def get_all_low_values(TICKER_LIST):
 
     for ticker in TICKER_LIST:
         low_values_list.append(get_low_value(ticker))
-    
+
     # print(low_values_list)
 
     return low_values_list
+
+
 def cmp_name():
-    l=[]
+    l = []
     # j=0
 
     for i in col.find():
         l.append(i["Company name"])
     return l
 
-        # print(type(i))
+    # print(type(i))
 
     # Database Name
+
+
 def get_each_ticker():
-    l=[]
-    m=[]
-    a=cmp_name()
+    l = []
+    m = []
+    a = cmp_name()
     for item in a:
         l.append(get_ticker(item))
-    # print(l)
-    m= get_all_low_values(l)
+    m = get_all_low_values(l)
     result_dict = dict(zip(a, m))
-    print(result_dict)
-    # print(m)
+    return result_dict
 
+def sort_company_data_by_ticker_data(company_data, ticker_data):
 
+    sorted_company_list = list({k: v for k, v in sorted(ticker_data.items(), key=lambda item: item[1])}.keys())
+
+    res = []
+
+    for company_name in sorted_company_list:
+
+        res.append(
+            list(filter(lambda company: company['Company name'] == company_name, company_data))
+        )
+
+    return res
 
 def startpy():
-    get_each_ticker()
+
+
+    ticker_data = get_each_ticker()
+    ans = sort_company_data_by_ticker_data(result, ticker_data)
+    print(ans)
+
+
     # get_low_value('CAJ')
 
     # get_low_value('AAPL')
     # getTicker('Apple')
     # a= cmp_name()
-    # get_ticker('google')
 
 
-
+result = [{"_id": {"$oid": "6308ccd6a05e6c3fec35e71c"}, "Company name": "apple", "Product name": "airpods", "Price": "26300", "Inventory": "20", "Categories": "electronics", "Manufacturing site": None, "Description": "ckd", "Time": "26/08/2022 19:08:30"},
+          {"_id": {"$oid": "6308fc5186f5cafe04147e35"}, "Company name": "intel", "Product name": "chip", "Price": "40000",
+              "Inventory": "24", "Categories": "electronics", "Manufacturing site": None, "Description": "nb", "Time": "26/08/2022 22:31:05"},
+          {"_id": {"$oid": "6308cdf4fed65690b8d64973"}, "Company name": "dell technologies", "Product name": "laptop", "Price": "226300",
+              "Inventory": "24", "Categories": "electronics", "Manufacturing site": None, "Description": "mm", "Time": "26/08/2022 19:13:16"},
+          {"_id": {"$oid": "630900bac0ceea8fc653f191"}, "Company name": "nikon", "Product name": "camera", "Price": "25000",
+           "Inventory": "41", "Categories": "electronics", "Manufacturing site": None, "Description": "xxxxc", "Time": "26/08/2022 22:49:54"},
+          {"_id": {"$oid": "630900ddc0ceea8fc653f192"}, "Company name": "canon", "Product name": "tripod", "Price": "4000",
+           "Inventory": "25", "Categories": "electronics", "Manufacturing site": None, "Description": "xc", "Time": "26/08/2022 22:50:29"}
+          ]
 
 if __name__ == '__main__':
-    startpy()
 
-    
+    startpy()    

@@ -1,14 +1,14 @@
-
 from unicodedata import category
 from flask import Flask, render_template, request, flash, redirect, session, url_for
 from dotenv import load_dotenv
 import os
 from pymongo import MongoClient
 from datetime import datetime
-from business import get_prev_id, display_all_products
-from gcp_upload import upload_blob
+from business import get_prev_id, display_all_products, get_per_category
+# from gcp_upload import upload_blob
 from werkzeug.utils import secure_filename
 import security_utils
+from utils import sort_company_data_by_ticker_data, get_each_ticker
 
 
 load_dotenv()
@@ -146,10 +146,13 @@ def login():
 @app.route('/categories/<category>', methods = ['GET', 'POST'])
 def categories(category):
 
-    print(category)
+    data = get_per_category(category)
+    ticker_data = get_each_ticker()
 
 
-    return render_template('items.html')
+    sorted_data = sort_company_data_by_ticker_data(data, ticker_data)
+
+    return render_template('items.html', data = sorted_data)
 
 
 @app.route('/new-product', methods=['GET', 'POST'])
@@ -204,7 +207,7 @@ def new_product():
 
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            upload_blob(f'uploads/{filename}', f'{c_name}/{p_name}')
+            # upload_blob(f'uploads/{filename}', f'{c_name}/{p_name}')
             return render_template('new_product2.html', result="Inserted") 
 
         else:

@@ -76,9 +76,20 @@ def get_image_url_list():
 
     return image_url_list
 
+def get_per_category(category):
 
+    database = client['trials']
+    col = database.products
 
+    res = []
 
+    for x in col.find({"Categories":category}):
+
+        del x["_id"]
+
+        res.append(x)
+    
+    return res
 
 
 def main():
