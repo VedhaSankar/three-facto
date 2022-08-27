@@ -133,39 +133,43 @@
         <div class="tbl-content">
             <table cellpadding="0" cellspacing="0" border="0">
                 <tbody>
+                    {% for item in data %}
                     <tr>
-                        {% for item in products.result %}
+           
+                        {% for i in item %}
 
                         <td>
                             <b>
-                            {{item.Company_name}}
+                            {{i.Company_name}}
                             </b>
                         </td>
                         <td>
                             <b>
-                            {{item.Product_name}}
+                            {{i.Product_name}}
                             </b>
                         </td>
                         <td>
                             <b>
-                            {{item.Price}}
+                            {{i.Price}}
                             </b>
                         </td>
                         <td>
                             <b>
                                 <a href>
-                                    {{item.Categories}}
+                                    {{i.Categories}}
                                 </a>
                             </b>
                         </td>
                         <td>
                             <b>
-                                    {{item.Description}}
+                                    {{i.Description}}
                             </b>
-                        </td>
+                        </td>{% endfor %}
+          
                     </tr>
-
                     {% endfor %}
+
+                    
                    
                 </tbody>
             </table>

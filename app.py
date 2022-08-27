@@ -174,7 +174,7 @@ def new_product():
 
 
         result = {
-            'Company name'          : c_name,
+            'Company_name'          : c_name,
             'Product_name'          : p_name,
             'Price'                 : price,
             'Inventory'             : inventory,

@@ -134,7 +134,7 @@ def get_low_value(tickerSymbol):
     # get the historical prices for this ticker
 
     try:
-        print ("here")
+        # print ("here")
         tickerDf = tickerData.history(period='1d', start=cur_date, end=cur_date)
     except:
         return 0
@@ -165,7 +165,7 @@ def cmp_name():
 
     for i in col.find():
 
-        l.append(i["Company name"])
+        l.append(i["Company_name"])
 
     return l
 
@@ -205,7 +205,7 @@ def sort_company_data_by_ticker_data(company_data, ticker_data):
     for company_name in sorted_company_list:
 
         res.append(
-            list(filter(lambda company: company['Company name'] == company_name, company_data))
+            list(filter(lambda company: company['Company_name'] == company_name, company_data))
         )
 
     return res

@@ -5,15 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+<style>
+    table {
+            width: 100%;
+            table-layout: fixed;
+        }
+</style>
+    
 </head>
 <body>
+    <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
     {% for item in data %}
 
-    <p>
-        {{ item[0] }}
-    </p>
+    <tr>
+        {% for i in item %}
+        <td>
+            <b>
+            {{i.Company_name}}
+        </b>
+        </td>
+        <td>
+            {{i.Product_name}}
+        </td>
+        <td>
+            {{i.Price}}
+        </td>
+        <td>
+            {{i.Categories}}
+        </td>
+        <td>
+            {{i.Description}}
+        </td>{% endfor %}
+
+    </tr>
         
     {% endfor %}
+
+</tbody>
+</table>
    
 </body>
 </html>
