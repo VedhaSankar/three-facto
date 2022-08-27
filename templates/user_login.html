@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProHost</title>
+    <title>TriFacto</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <style>
@@ -182,17 +182,20 @@
 </head>
 
 <body>
-    <form action="/" method="post" class="login">
+    <form action="/login" method="post" class="login">
         <h1 style="padding-left: 130px; color:#151D3B ;"><i class="fa-solid fa-user"></i> Login
         </h1>
 
-        <label for="uname"><b>Username</b></label>
-        <input type="uname" id="uname" name="uname" placeholder="username">
+        <label for="email"><b>Email</b></label>
+        <input type="email" id="email" name="email" placeholder="username">
 
-        <label for="psw"><b>Password</b></label>
-        <input type="password" id="password" name="psw" placeholder="password" required>
+        <label for="password"><b>Password</b></label>
+        <input type="password" id="password" name="password" placeholder="password" required>
         <button onclick="location.href = 'home.html';" id="signin" class="float-left submit-button">Sign In</button>
         <!-- <button>Login</button> -->
+                    {% if message %}
+                    {{ message }}
+                   {% endif %}
     </form>
 
     <a href="/signup">

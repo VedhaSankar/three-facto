@@ -1,1 +1,7 @@
 .env
+trifacto.json 
+__pycache__/
+.vscode
+
+# Allow
+! uploads/a.txt

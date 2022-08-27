@@ -1,0 +1,53 @@
+result = [{
+            'Company name'          : Apple ,
+            'Product name'          : airpods,
+            'Price'                 : 26300,
+            'Inventory'             : 20,
+            'Categories'            : electronics,
+            'Manufacturing site'    : California,
+            'Description'           : a new class of in-ear headphones ,
+            'Time'                  : dt_string
+        },
+
+        {
+            'Company name'          : Dell Technologies ,
+            'Product name'          : laptop,
+            'Price'                 : 226300,
+            'Inventory'             : 24,
+            'Categories'            : electronics,
+            'Manufacturing site'    : North Ryde,
+            'Description'           : Inspiron keeps you connected to what matters most to you,
+            'Time'                  : dt_string
+        },
+
+        {
+            'Company name'          : Sony ,
+            'Product name'          : television,
+            'Price'                 : 25000,
+            'Inventory'             : 32,
+            'Categories'            : electronics,
+            'Manufacturing site'    : Japan,
+            'Description'           : upscaling technology in our latest TVs brings everything you watch to life in our stunning 4K quality,
+            'Time'                  : dt_string
+        },
+        {
+            'Company name'          : NVIDIA ,
+            'Product name'          : graphics chip,
+            'Price'                 : 226300,
+            'Inventory'             : 24,
+            'Categories'            : electronics,
+            'Manufacturing site'    : Santa Carlo,
+            'Description'           : big ferocious GPUs (BFGPUs) with TITAN class performance,
+            'Time'                  : dt_string
+        },
+        {
+            'Company name'          : intel ,
+            'Product name'          : chip,
+            'Price'                 : 50000,
+            'Inventory'             : 50,
+            'Categories'            : electronics,
+            'Manufacturing site'    : germany,
+            'Description'           : Inverter Touch Control Fully Automatic Front Loading Washing Machine with In - built Heater,
+            'Time'                  : dt_string
+        }
+]

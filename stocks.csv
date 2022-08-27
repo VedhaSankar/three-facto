@@ -203,7 +203,6 @@ AIMT,"aimmune therapeutics, inc. - common stock"
 AIN,albany international corporation common stock
 AINC,ashford inc. (holding company) common stock
 AINV,apollo investment corporation - closed end fund
-AIO,allianzgi artificial intelligence & technology opportunities fund common shares
 AIQ,global x future analytics tech etf
 AIR,aar corp. common stock
 AIRG,"airgain, inc. - common stock"
@@ -414,6 +413,7 @@ ARAY,accuray incorporated - common stock
 ARC,"arc document solutions, inc. common stock"
 ARCB,arcbest corporation - common stock
 ARCC,ares capital corporation - closed end fund
+NINOY,nikon corporation
 ARCE,arco platform limited - class a common shares
 ARCH,"arch coal, inc. class a common stock"
 ARCM,arrow reserve capital management etf
@@ -872,9 +872,9 @@ BOOM,dmc global inc. - common stock
 BOOT,"boot barn holdings, inc. common stock"
 BORR,borr drilling limited common shares
 BOSC,b.o.s. better online solutions - ordinary shares
+BOSCHLTD-bosch limited
 BOSS,global x funds global x founder-run companies etf
 BOTJ,"bank of the james financial group, inc. - common stock"
-BOTZ,global x robotics & artificial intelligence etf
 BOUT,innovator ibd breakout opportunities etf
 BOX,"box, inc. class a common stock"
 BOXL,boxlight corporation - class a common stock
@@ -3095,7 +3095,6 @@ GOEX,global x gold explorers etf
 GOF,guggenheim strategic opportunities fund common shares of beneficial interest
 GOGL,golden ocean group limited - common stock
 GOGO,gogo inc. - common stock
-GOL,gol linhas aereas inteligentes s.a. sponsored adr representing 2 pfd shares
 GOLD,barrick gold corporation common stock (bc)
 GOLF,acushnet holdings corp. common stock
 GOOD,gladstone commercial corporation - real estate investment trust
@@ -3509,7 +3508,6 @@ HYZD,wisdomtree interest rate hedged high yield bond fund
 HZN,horizon global corporation common shares
 HZNP,horizon therapeutics public limited company - ordinary shares
 HZO,"marinemax, inc.  (fl) common stock"
-I,intelsat s.a. common shares
 IAA,"iaa, inc. common stock "
 IAC,iac/interactivecorp - common stock
 IAE,voya asia pacific high dividend equity income fund ing asia pacific high dividend equity income fund common shares of beneficial interest
@@ -3603,7 +3601,6 @@ IDIV,u.s. equity cumulative dividends fund series 2027 shares
 IDLB,invesco ftse international low beta equal weight etf
 IDLV,invesco s&p international developed low volatility etf
 IDMO,invesco s&p international developed momentum etf
-IDN,"intellicheck, inc. - common stock"
 IDNA,ishares genomics immunology and healthcare etf
 IDOG,alps international sector dividend dogs etf
 IDRA,"idera pharmaceuticals, inc. - common stock"
@@ -3761,7 +3758,6 @@ INO,"inovio pharmaceuticals, inc. - common stock"
 INOD,innodata inc. - common stock
 INOV,"inovalon holdings, inc. - class a common stock"
 INPX,inpixon  - common stock
-INS,intelligent systems corporation common stock
 INSE,"inspired entertainment, inc. - common stock"
 INSG,inseego corp. - common stock
 INSI,insight select income fund
@@ -3815,12 +3811,10 @@ IQDY,flexshares international quality dividend dynamic index fund
 IQI,invesco quality municipal income trust common stock
 IQIN,iq 500 international etf
 IQLT,ishares edge msci intl quality factor etf
-IQM,franklin intelligent machines etf
 IQSI,iq candriam esg international equity etf
 IQSU,iq candriam esg us equity etf
 IQV,"iqvia holdings, inc. common stock"
 IR,ingersoll rand inc. common stock
-IRBO,ishares robotics and artificial intelligence multisector etf
 IRBT,irobot corporation - common stock
 IRCP,irsa propiedades comerciales s.a. - american depository shares
 IRDM,iridium communications inc - common stock
@@ -5119,7 +5113,6 @@ NTGN,"neon therapeutics, inc. - common stock"
 NTGR,"netgear, inc. - common stock"
 NTIC,northern technologies international corporation - common stock
 NTIP,"network-1 technologies, inc. common stock"
-NTLA,"intellia therapeutics, inc. - common stock"
 NTN,"ntn buzztime, inc. common stock"
 NTNX,"nutanix, inc. - class a common stock"
 NTP,nam tai property inc. common stock
@@ -6153,7 +6146,6 @@ RNWK,"realnetworks, inc. - common stock"
 ROAD,"construction partners, inc. - common stock"
 ROAM,hartford multifactor emerging markets etf
 ROBO,exchange traded concepts trust robo global robotics and automation index etf
-ROBT,first trust nasdaq artificial intelligence and robotics etf
 ROCK,"gibraltar industries, inc. - common stock"
 RODE,hartford multifactor diversified international etf
 RODI,ipath return on disability etn
@@ -6502,7 +6494,6 @@ SILK,"silk road medical, inc. - common stock"
 SILV,silvercrest metals inc. common shares
 SIM,"grupo simec, s.a.b. de c.v. american depositary shares"
 SIMO,"silicon motion technology corporation - american depositary shares, each representing four ordinary shares"
-SIMS,spdr s&p kensho intelligent structures etf 
 SINA,sina corporation - ordinary shares
 SINO,"sino-global shipping america, ltd. - common stock"
 SINT,"sintx technologies, inc. - common stock"
@@ -7290,7 +7281,6 @@ UBER,"uber technologies, inc. common stock"
 UBFO,united security bancshares - common stock
 UBG,e-tracs usb bloomberg commodity index exchange traded notes e-tracs ubs bloomberg cmci gold etn
 UBOH,"united bancshares, inc. - common stock"
-UBOT,"direxion daily robotics, artificial intelligence & automation index bull 3x shares"
 UBP,urstadt biddle properties inc. common stock
 UBR,proshares ultra msci brazil capped
 UBS,ubs group ag registered ordinary shares

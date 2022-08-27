@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Integrated Project Platform</title>
+    <title>TriFacto</title>
     <style>
         h1 {
             font-size: 30px;
@@ -98,39 +98,34 @@
 
 <body>
     <section>
-        <div class="tbl-header">
+        <div >
             <table cellpadding="0" cellspacing="0" border="0">
                 <thead>
                     <tr>
                         <th><b>
-                            ID
+                            Company name
                             </b>
                         </th>
                         <th>
                             <b>
-                            Project Name
+                                Product name
                             </b>
                         </th>
                         <th>
                             <b>
-                            Project Description
+                                Price
                             </b>
                         </th>
                         <th>
                             <b>
-                            Email
+                                Categories
                             </b>
                         </th>
                         <th>
                             <b>
-                            Resource Link
+                                Description
                             </b>
-                        </th>
-                        <th>
-                            <b>
-                            GitHub Link
-                            </b>
-                        </th>
+
                     </tr>
                 </thead>
             </table>
@@ -138,46 +133,43 @@
         <div class="tbl-content">
             <table cellpadding="0" cellspacing="0" border="0">
                 <tbody>
+                    {% for item in data %}
                     <tr>
-                        {% for item in projects.result %}
-                        <td>
-                            <b>
-                            {{item._id}}
-                            </b>
-                        </td>
-            
-                        <td>
-                            <b>
-                            {{item.project_name}}
-                            </b>
-                        </td>
-                        <td>
-                            <b>
-                            {{item.project_description}}
-                            </b>
-                        </td>
-                        <td>
-                            <b>
-                            {{item.email}}
-                            </b>
-                        </td>
-                        <td>
-                            <b>
-                                <a href>
-                                    {{item.resource_link}}
-                                </a>
-                            </b>
-                        </td>
-                        <td>
-                            <b>
-                                <a href>
-                                    {{item.github_link}}
-                                </a>
-                            </b>
-                        </td>
-                    </tr>
+           
+                        {% for i in item %}
 
+                        <td>
+                            <b>
+                            {{i.Company_name}}
+                            </b>
+                        </td>
+                        <td>
+                            <b>
+                            {{i.Product_name}}
+                            </b>
+                        </td>
+                        <td>
+                            <b>
+                            {{i.Price}}
+                            </b>
+                        </td>
+                        <td>
+                            <b>
+                                <a href>
+                                    {{i.Categories}}
+                                </a>
+                            </b>
+                        </td>
+                        <td>
+                            <b>
+                                    {{i.Description}}
+                            </b>
+                        </td>{% endfor %}
+          
+                    </tr>
                     {% endfor %}
+
+                    
                    
                 </tbody>
             </table>
